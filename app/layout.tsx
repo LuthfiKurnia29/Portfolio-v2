@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Portfolio Luthfi Kurnia Hadi",
+  title: "Portfolio - Luthfi Kurnia Hadi",
   description: "This is a second portfolio",
 };
 
