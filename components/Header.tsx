@@ -3,7 +3,7 @@ import Container from './Container';
 import Logo from './Logo';
 import { NavbarData } from '@/constants';
 import Link from 'next/link';
-
+import Nav from './Nav';
 const Header = () => {
   return (
     <header className='border-b border-b-hoverColor/10'>
