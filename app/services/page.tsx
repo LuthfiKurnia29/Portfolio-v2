@@ -1,57 +1,96 @@
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { ArrowBigRight, LinkIcon } from 'lucide-react';
-import React from 'react'
+import { ArrowRight, Globe, Server, Database, Smartphone } from "lucide-react";
+import Link from "next/link";
+import SectionTitle from "@/components/SectionTitle";
+import { ServicesData } from "@/constants";
 
-const Services = () => {
+const iconMap: Record<string, React.ReactNode> = {
+  "01": <Globe size={24} />,
+  "02": <Server size={24} />,
+  "03": <Database size={24} />,
+  "04": <Smartphone size={24} />,
+};
+
+export default function Services() {
   return (
-      <div className="flex flex-col items-center h-screen mt-8">
-          <h1 className="text-3xl font-semibold mt-4">This My Gallery Portofolio</h1>
-          <p>Im open to work more apps including Web, Mobile, ERP, etc. Here is some my portofolio using many technologies</p>
-          <div className='flex gap-4 justify-center mt-4 p-10'>
-            <div className='col-4'>
-              <Card className="w-full h-64 mt-4 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <a href='/services/web' rel='noopener noreferrer' className="flex flex-col items-center justify-center h-full">
-                    <div className="p-4 flex flex-col items-center justify-center h-full">
-                      <h2 className="text-xl font-semibold">Website</h2>
-                      <p className="text-gray-600">Click the button below to see my portofolio</p>
-                    </div>
-                  </a>
-                </Card>
-            </div>
-            <div className='col-4'>
-              <Card className="w-full h-64 mt-4 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <a href='#' rel='noopener noreferrer' className="flex flex-col items-center justify-center h-full">
-                    <div className="p-4 flex flex-col items-center justify-center h-full">
-                      <h2 className="text-xl font-semibold">ERP</h2>
-                      <p className="text-gray-600">Click the button below to see my portofolio</p>
-                    </div>
-                  </a>
-                </Card>
-            </div>
-            <div className='col-4'>
-              <Card className="w-full h-64 mt-4 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <a href='#' rel='noopener noreferrer' className="flex flex-col items-center justify-center h-full">
-                    <div className="p-4 flex flex-col items-center justify-center h-full">
-                      <h2 className="text-xl font-semibold">Design</h2>
-                      <p className="text-gray-600">Click the button below to see my portofolio</p>
-                    </div>
-                  </a>
-                </Card>
-            </div>
-            <div className='col-4'>
-              <Card className="w-full h-64 mt-4 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <a href='#' rel='noopener noreferrer' className="flex flex-col items-center justify-center h-full">
-                    <div className="p-4 flex flex-col items-center justify-center h-full">
-                      <h2 className="text-xl font-semibold">Mobile</h2>
-                      <p className="text-gray-600">Click the button below to see my portofolio</p>
-                    </div>
-                  </a>
-                </Card>
-            </div>
-          </div>
-      </div>
-  )
-}
+    <main className="pt-20">
+      <section id="services" className="section-container">
+        <SectionTitle
+          label="layanan"
+          title="Apa yang Saya Tawarkan"
+          subtitle="Saya terbuka untuk berbagai jenis proyek — dari Web App hingga sistem enterprise. Berikut beberapa layanan yang saya sediakan."
+          centered
+        />
 
-export default Services;
+        {/* Service Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {ServicesData.map((service) => (
+            <Link
+              key={service.id}
+              href={service.href}
+              id={`service-card-${service.id}`}
+              className="card-glass p-6 group block"
+            >
+              {/* Top row */}
+              <div className="flex items-start justify-between mb-5">
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-xl bg-lightSky/10 border border-lightSky/20 flex items-center justify-center text-lightSky group-hover:bg-lightSky/20 group-hover:border-lightSky/40 transition-all duration-300">
+                  {iconMap[service.id]}
+                </div>
+                {/* Number */}
+                <span className="font-mono text-4xl font-bold text-white/5 group-hover:text-lightSky/10 transition-colors duration-300 select-none">
+                  {service.id}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-lightSky transition-colors duration-300">
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-subtleText text-sm leading-relaxed mb-5">
+                {service.description}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {service.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded-md bg-cardBorder text-mutedText text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Link arrow */}
+              <div className="flex items-center gap-1 text-xs text-lightSky font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Lihat detail
+                <ArrowRight size={12} />
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-16 text-center">
+          <div className="card-glass inline-block p-8 max-w-xl mx-auto">
+            <p className="text-mutedText font-mono text-xs mb-3">// butuh sesuatu yang lain?</p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              Ada proyek di benak Anda?
+            </h3>
+            <p className="text-subtleText text-sm mb-6">
+              Saya selalu terbuka untuk diskusi tentang proyek baru dan
+              kesempatan kolaborasi.
+            </p>
+            <a href="/contact" id="services-contact-cta" className="btn-primary">
+              Hubungi Saya
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

@@ -1,19 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
-  body{
-    @apply bg-bodyColor text-white leading-loose;
+  :root {
+    --radius: 0.75rem;
+    --background: #0a0a0f;
+    --foreground: #ffffff;
   }
-  .hoverEffect{
-    @apply transition-all cursor-pointer duration-300 ease-in-out;
+
+  * {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bodyColor text-white leading-relaxed;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(0, 255, 153, 0.2);
+    color: #00ff99;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e2e;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00ff99;
   }
 }
 
-@font-face{
-  font-family: 'JetBrains Mono';
+@layer components {
+  .hoverEffect {
+    @apply transition-all cursor-pointer duration-300 ease-in-out;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-lightSky to-hoverColor bg-clip-text text-transparent;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24;
+  }
+
+  .card-glass {
+    @apply bg-cardBg border border-cardBorder rounded-2xl backdrop-blur-sm;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-glass:hover {
+    border-color: rgba(0, 255, 153, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 255, 153, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .nav-link {
+    @apply relative text-subtleText hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-0 bg-lightSky transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .nav-link.active {
+    @apply text-lightSky;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-lightSky text-bodyColor font-semibold text-sm transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply bg-hoverColor;
+    box-shadow: 0 0 24px rgba(0, 255, 153, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-cardBorder text-white font-semibold text-sm transition-all duration-300;
+  }
+
+  .btn-outline:hover {
+    @apply border-lightSky text-lightSky;
+    box-shadow: 0 0 16px rgba(0, 255, 153, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .skill-badge {
+    @apply inline-flex items-center px-3 py-1.5 rounded-lg bg-cardBg border border-cardBorder text-xs font-mono text-subtleText transition-all duration-300;
+  }
+
+  .skill-badge:hover {
+    @apply border-lightSky text-lightSky;
+    box-shadow: 0 0 12px rgba(0, 255, 153, 0.15);
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-10;
+  }
+
+  .timeline-item::before {
+    content: "";
+    @apply absolute left-0 top-2 h-full w-px bg-cardBorder;
+  }
+
+  .timeline-item::after {
+    content: "";
+    @apply absolute left-[-4px] top-2 h-2.5 w-2.5 rounded-full bg-lightSky;
+    box-shadow: 0 0 8px rgba(0, 255, 153, 0.5);
+  }
+
+  .timeline-item:last-child::before {
+    @apply hidden;
+  }
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
   font-style: normal;
   font-display: swap;
   font-weight: 100 800;
-  src: url('../fonts/tDbX2o-flEEny0FZhsfKu5WU4xD-CwynSHrV.woff2');
+  src: url("../fonts/tDbX2o-flEEny0FZhsfKu5WU4xD-CwynSHrV.woff2");
+}
+
+/* Glow blob decoration */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  pointer-events: none;
 }
