@@ -36,7 +36,7 @@ export default function Home() {
             </h1>
 
             <p className="text-subtleText text-base md:text-lg mb-4 font-mono">
-              // Web Developer · .NET Specialist
+              Web Developer · .NET Specialist
             </p>
 
             <p className="text-subtleText leading-relaxed max-w-lg mb-8 text-sm md:text-base">
@@ -63,7 +63,7 @@ export default function Home() {
 
             {/* Social Links */}
             <div className="flex items-center gap-3 mt-8 justify-center md:justify-start">
-              <span className="text-xs text-mutedText font-mono">// temukan saya di</span>
+              <span className="text-xs text-mutedText font-mono">Temukan saya di</span>
               <a
                 href="https://www.linkedin.com/in/luthfi-kurnia-hadi-901b78240/"
                 target="_blank"
@@ -173,7 +173,7 @@ export default function Home() {
               ].map((item) => (
                 <div key={item.label}>
                   <p className="text-xs text-mutedText font-mono mb-0.5">
-                    // {item.label}
+                    {item.label}
                   </p>
                   <p className="text-white font-medium">{item.value}</p>
                 </div>

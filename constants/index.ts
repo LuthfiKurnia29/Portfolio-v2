@@ -29,8 +29,7 @@ export const ExperienceData = [
   {
     role: "Fullstack Developer",
     company: "PT Sekawan Media Informatika",
-    period: "May 2024 – June 2026",
-    duration: "2 Years, 1 Month",
+    period: "May 2024 – Present",
     location: "Malang, East Java, Indonesia",
     bullets: [
       "Develop and support certification and audit applications for various clients, managing projects from initial design to completion.",
@@ -135,7 +134,7 @@ export const SocialLinks = [
 
 export const StatsData = [
   { value: "2+", label: "Tahun Pengalaman" },
-  { value: "10+", label: "Proyek Selesai" },
+  { value: "4+", label: "Proyek Selesai" },
   { value: "5+", label: "Teknologi Utama" },
   { value: "100%", label: "Komitmen" },
 ];

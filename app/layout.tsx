@@ -32,10 +32,10 @@ export default function RootLayout({
         <footer className="border-t border-cardBorder py-8 mt-16">
           <div className="max-w-6xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-mutedText text-xs font-mono">
-              © {new Date().getFullYear()} Luthfi Kurnia Hadi · Dibuat dengan ❤️
+              © {new Date().getFullYear()} Luthfi Kurnia Hadi
             </p>
             <p className="text-mutedText text-xs font-mono">
-              // built with Next.js & Tailwind CSS
+              built with Next.js & Tailwind CSS
             </p>
           </div>
         </footer>

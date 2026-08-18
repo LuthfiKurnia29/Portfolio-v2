@@ -19,7 +19,7 @@ const SectionTitle = ({
     <div className={cn("mb-12", centered && "text-center", className)}>
       {label && (
         <span className="inline-block font-mono text-xs text-lightSky tracking-widest uppercase mb-3 opacity-80">
-          // {label}
+          {label}
         </span>
       )}
       <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
@@ -27,7 +27,7 @@ const SectionTitle = ({
         <span className="text-lightSky">.</span>
       </h2>
       {subtitle && (
-        <p className="mt-3 text-subtleText text-base max-w-xl leading-relaxed">
+        <p className="mt-3 text-subtleText text-base max-w-xl leading-relaxed justify-center">
           {subtitle}
         </p>
       )}

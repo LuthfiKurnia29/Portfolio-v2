@@ -23,6 +23,8 @@ const iconMap: Record<string, React.ReactNode> = {
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,10 +32,31 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder – integrate with Resend/Nodemailer later
-    setSent(true);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error ?? "Gagal mengirim pesan. Silakan coba lagi.");
+        return;
+      }
+
+      setSent(true);
+    } catch {
+      setError("Terjadi kesalahan jaringan. Silakan coba lagi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -42,7 +65,6 @@ export default function Contact() {
         <SectionTitle
           label="kontak"
           title="Mari Berkolaborasi"
-          subtitle="Punya proyek atau ingin berdiskusi? Saya selalu senang mendengar ide-ide baru."
           centered
         />
 
@@ -70,7 +92,6 @@ export default function Contact() {
                   <Mail size={14} />
                 </div>
                 <div>
-                  <p className="text-xs text-mutedText font-mono">// email</p>
                   <p className="text-white text-xs">lutpihadi29@gmail.com</p>
                 </div>
               </div>
@@ -79,7 +100,6 @@ export default function Contact() {
                   <MapPin size={14} />
                 </div>
                 <div>
-                  <p className="text-xs text-mutedText font-mono">// lokasi</p>
                   <p className="text-white text-xs">Indonesia</p>
                 </div>
               </div>
@@ -88,7 +108,6 @@ export default function Contact() {
                   <Clock size={14} />
                 </div>
                 <div>
-                  <p className="text-xs text-mutedText font-mono">// waktu respon</p>
                   <p className="text-white text-xs">Dalam 24 jam</p>
                 </div>
               </div>
@@ -96,7 +115,7 @@ export default function Contact() {
 
             {/* Social links */}
             <div className="card-glass p-5">
-              <p className="text-mutedText font-mono text-xs mb-4">// media sosial</p>
+              <p className="text-mutedText font-mono text-xs mb-4">Media sosial</p>
               <div className="flex flex-col gap-3">
                 {SocialLinks.map((link) => (
                   <a
@@ -136,7 +155,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <p className="text-mutedText font-mono text-xs mb-2">
-                    // kirim pesan
+                    Kirim pesan
                   </p>
 
                   <div>
@@ -196,13 +215,18 @@ export default function Contact() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-red-400 text-xs text-center">{error}</p>
+                  )}
+
                   <button
                     id="contact-submit"
                     type="submit"
-                    className="btn-primary w-full justify-center"
+                    disabled={loading}
+                    className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send size={16} />
-                    Kirim Pesan
+                    {loading ? "Mengirim..." : "Kirim Pesan"}
                   </button>
                 </form>
               )}

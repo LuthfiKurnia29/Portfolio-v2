@@ -47,7 +47,7 @@ export default function Resume() {
               >
                 {/* Left: date + location */}
                 <div className="md:pt-1">
-                  <p className="text-subtleText text-sm leading-snug">{exp.period}</p>
+                  <p className="text-subtleText justify-start text-sm leading-snug">{exp.period}</p>
                   {exp.duration && (
                     <p className="text-subtleText text-sm">({exp.duration})</p>
                   )}
@@ -130,7 +130,7 @@ export default function Resume() {
 
         {/* ─── Skill bars (compact) ─── */}
         <div className="mt-16 card-glass p-6 max-w-xl">
-          <p className="text-mutedText font-mono text-xs mb-5">// keahlian utama</p>
+          <p className="text-mutedText font-mono text-xs mb-5">Keahlian utama</p>
           <div className="space-y-4">
             {[
               { label: "Backend Development (.NET / C#)", level: 90 },

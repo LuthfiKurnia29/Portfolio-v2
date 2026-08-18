@@ -17,7 +17,6 @@ export default function Services() {
         <SectionTitle
           label="layanan"
           title="Apa yang Saya Tawarkan"
-          subtitle="Saya terbuka untuk berbagai jenis proyek — dari Web App hingga sistem enterprise. Berikut beberapa layanan yang saya sediakan."
           centered
         />
 
@@ -76,7 +75,7 @@ export default function Services() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <div className="card-glass inline-block p-8 max-w-xl mx-auto">
-            <p className="text-mutedText font-mono text-xs mb-3">// butuh sesuatu yang lain?</p>
+            <p className="text-mutedText font-mono text-xs mb-3">Butuh sesuatu yang lain?</p>
             <h3 className="text-xl font-bold text-white mb-2">
               Ada proyek di benak Anda?
             </h3>
